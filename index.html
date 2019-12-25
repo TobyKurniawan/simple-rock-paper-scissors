@@ -1,0 +1,72 @@
+<HTML>
+    <script>
+        function computerPlay(){
+            var choice = Math.floor((Math.random() * 3) + 1);
+            if(choice === 1){
+                return 'Rock';
+            } else if (choice === 2){
+                return 'Paper';
+            } else {
+                return 'Scissors';
+            }
+        }
+
+        function playRound(player, comp){
+            player = player.toLowerCase();
+            if(player === 'rock'){
+                if(comp === 'Rock'){
+                    return 'Tie! Rock ties Rock';
+                } else if (comp === 'Paper'){
+                    return 'You Lose! Paper beats Rock';
+                } else {
+                    return 'You Win! Rock beats Scissors';
+                }
+            } else if (player === 'paper'){
+                if(comp === 'Rock'){
+                    return 'You Win! Paper beats Rock';
+                } else if (comp === 'Paper'){
+                    return 'Tie! Paper ties Paper';
+                } else {
+                    return 'You Lose! Scissors beats Paper';
+                }
+            } else if (player === 'scissors'){
+                if(comp === 'Rock'){
+                    return 'You Lose! Rock beats Scissors';
+                } else if (comp === 'Paper'){
+                    return 'You Win! Scissors beats Paper';
+                } else {
+                    return 'Tie! Scissors ties Scissors';
+                }                
+            } else {
+                return 'You Lose! Enter a valid string next time.'
+            }
+        }
+
+        function game(){
+            let CPU = 0;
+            let human = 0;
+            for(var i = 0; i < 5; i++){
+                let move = prompt("Please enter rock, paper, or scissors.");
+                const computerMove = computerPlay();
+                let result = playRound(move, computerMove);
+                console.log(result);
+                if(result.search("Tie") !== -1){
+                    //do nothing
+                } else if (result.search("Lose") !== -1){
+                    CPU++;
+                } else if (result.search("Win") !== -1){
+                    human++;
+                } else {
+                    CPU++;
+                }
+            }
+            if(CPU > human){
+                console.log("CPU Wins!");
+            } else if (human > CPU){
+                console.log("Human wins!");
+            } else {
+                console.log("Draw!");
+            }
+        }
+    </script>
+</HTML>
